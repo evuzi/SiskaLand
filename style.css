@@ -31,12 +31,29 @@ section.visible, .hero h1.visible, .hero p.visible, .btn.visible, .server-ip.vis
     margin-bottom: 30px;
 }
 
-#rules ul {
+#rules {
     max-width: 900px;
-    margin: 0 auto;
+    margin: 50px auto;
+    background: rgba(27,27,27,0.85); /* Полупрозрачная рамка */
+    border-radius: 15px; /* Скругление */
+    padding: 30px 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5); /* Тень */
+}
+
+#rules h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#rules ul {
     list-style: disc;
     padding-left: 20px;
 }
+
+#rules ul li {
+    margin: 8px 0; /* Отступы между пунктами */
+}
+
 
 .features { display:flex; flex-wrap:wrap; gap:20px; justify-content:center; }
 .feature { background:rgba(27,27,27,0.8); padding:20px; border-radius:10px; width:220px; text-align:center; transition:0.5s; transform:translateY(0) scale(1); cursor:pointer; box-shadow:0 5px 15px rgba(0,0,0,0.3);}
@@ -79,4 +96,5 @@ footer { background:rgba(27,27,27,0.95); text-align:center; padding:15px; margin
     .features { flex-direction:column; align-items:center; }
     .feature { width:90%; }
 }
+
 
