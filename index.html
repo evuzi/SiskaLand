@@ -1,92 +1,111 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SiskaLand — Minecraft сервер</title>
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SiskaLand</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<header>
-    <div class="logo">SiskaLand</div>
+<header class="site-header">
+    <div class="logo">SiskaLand 2</div>
     <nav>
         <ul>
-            <li><a href="#home">Главная</a></li>
-            <li><a href="#features">Особенности</a></li>
-            <li><a href="#rules">Правила</a></li>
-            <li><a href="#contact">Контакты</a></li>
         </ul>
     </nav>
 </header>
 
 <section class="hero" id="home">
-    <canvas id="particles"></canvas>
-    <h1>Добро пожаловать в SiskaLand!</h1>
-    <p>Для добавления в вайтлист пишите - @evuzich или @Ozersk1y</p>
-    <div>
-        <a href="https://drive.google.com/drive/folders/1oMC5wVo-dYIVUL8oxxrOJ03gHsgMmJ5j?usp=drive_link" target="_blank" class="btn">Скачать сборку</a>
+  <div class="hero-frame">
+    <div class="hero-content">
+      <div class="hero-info-box">
+        <h1>Добро пожаловать в SiskaLand!</h1>
+        <p>Самый адекватный Minecraft сервер в мире</p>
+        <div class="server-info">
+          <div class="server-ip">IP: siskaland.play.ski</div>
+          <div class="game-version">Версия: 1.21.9</div>
+        </div>
+      </div>
+
+      <div class="buttons-vertical">
+        <a href="https://drive.google.com/drive/folders/1oMC5wVo-dYIVUL8oxxrOJ03gHsgMmJ5j?usp=drive_link" target="_blank" class="btn-download">Начать (Скачать сборку)</a>
+      </div>
     </div>
-    <!-- Объединённый блок IP и версии -->
-    <div class="server-info">
-        <div class="server-ip">IP: siskaland.play.ski</div>
-        <div class="game-version">Версия: 1.21.9</div>
-    </div>
+	<!-- Рамка с новостями справа от приветствия -->
+<div class="news-box">
+  <h2>Что нового в SiskaLand 2?</h2>
+  <ul>
+    <li>"</li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li>Сборка обновлена до версии 1.21.9</li>
+  </ul>
+</div>
+
+
+    <!-- Фоновая цифра -->
+    <div class="hero-background-number">2</div>
+  </div>
 </section>
 
 
-
-<section id="features">
-    <h2>Особенности сервера</h2>
-    <div class="features">
-        <div class="feature">
-            <img src="https://i.ibb.co/xKqFpvRG/icons8-1-100.png" alt="Экономика">
-            <h3>Моды</h3>
-            <p>Есть вебкамеры, войс, нету привата.</p>
-        </div>
-        <div class="feature">
-            <img src="https://i.ibb.co/7JMk4zCD/icons8-2-100.png" alt="Команда">
-            <h3>Активная команда</h3>
-            <p>Наши администраторы всегда на связи, чтобы помогать игрокам.</p>
-        </div>
+<section id="features" class="section-dark">
+  <h2>Особенности сервера</h2>
+  <div class="features-grid">
+    <div class="feature-card">
+      <h3>Экономика</h3>
+      <p>Развивай бизнес и торговлю</p>
     </div>
+    <div class="feature-card">
+      <h3>Команда</h3>
+      <p>Активные администраторы всегда помогут</p>
+    </div>
+    <div class="feature-card">
+      <h3>События</h3>
+      <p>Регулярные турниры и конкурсы</p>
+    </div>
+    <div class="feature-card">
+      <h3>Сервера</h3>
+      <p>Разные миры и локации для игроков</p>
+    </div>
+  </div>
 </section>
 
-<section id="rules">
-    <h2>Правила сервера</h2>
+<section id="rules" class="section-dark">
+  <h2>Правила сервера</h2>
+  <div class="rules-box">
     <ul>
-        <li>Запрещён гриф (ломание сундуков, сжигание построений и т.д)</li>
-        <li>Запрещено мешать игрокам (Убивать их, красть вещи из печки и т.д)</li>
-        <li>Запрещено воровать и обманывать на вещи людей</li>
-        <li>Запрещены читы любого вида (Xray, гамма, софты и т.д)</li>
-        <li>Запрещено убивать людей без причины (Разрешается в случае: самообороны, если человек мешает)</li>
-        <li>Запрещено строить и добавлять в картины и вообще упоминать нацистскую символику (Свастика и т.д)</li>
-        <li>Запрещено упоминание в чате любых запреток на твиче (Список запретных слов) Со стримом не заходить</li>
-        <li>Запрещено с помощью ImageFrame делать картины 18+ характера</li>
-        <li>Запрещена токсичность в чате</li>
-        <li>Администрация выдаёт наказания по своему желанию!!!!!!!!</li>
-        <li>Не знание правил не освобождает от ответственности!!!!!!!!</li>
-        <li>Правила могут меняться!</li>
-        <li>При нарушение писать админам в тг - @evuzich или @Ozersk1y (Можно пингануть в репо конфе если будет игнор)</li>
+      <li>Запрещён гриф (ломание сундуков, сжигание построений)</li>
+      <li>Запрещено мешать игрокам (убивать, красть вещи)</li>
+      <li>Запрещено воровать и обманывать на вещи людей</li>
+      <li>Запрещены читы любого вида</li>
+      <li>Запрещено убивать без причины (кроме самообороны)</li>
+      <li>Запрещено упоминать нацистскую символику и запрещённые слова</li>
+      <li>Администрация выдаёт наказания по своему усмотрению</li>
+      <li>Не знание правил не освобождает от ответственности</li>
+      <li>Правила могут меняться</li>
+      <li>При нарушении писать в Telegram: <b>@evuzich</b> или <b>@Ozersk1y</b></li>
     </ul>
+  </div>
 </section>
 
-
-<section id="contact">
-    <h2>Контакты</h2>
-    <p>Присоединяйся к нашим Telegram-каналам:</p>
-    <p><a href="https://t.me/unknownspb_83" target="_blank">@ozerskiy</a></p>
-    <p><a href="https://t.me/earth_evuzi" target="_blank">@earth_evuzi</a></p>
+<section id="contact" class="section-dark">
+  <h2>Телеграм-каналы</h2>
+  <div class="contact-box">
+    <a href="https://t.me/unknownspb_83" target="_blank">Ozersk1y</a>
+    <a href="https://t.me/earth_evuzi" target="_blank">Evuzi</a>
+  </div>
 </section>
 
-<footer>
-    &copy; 2025 SiskaLand. Все права защищены.
+<footer class="site-footer">
+    © 2025 SiskaLand. Все права защищены.
 </footer>
 
 <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
