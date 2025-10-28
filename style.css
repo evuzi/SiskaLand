@@ -1,136 +1,364 @@
-* { margin:0; padding:0; box-sizing:border-box; font-family:'Roboto', sans-serif; }
-body { 
-    background: linear-gradient(135deg, #000000, #4b0082);
-    color:#fff; 
-    overflow-x:hidden; 
-    scroll-behavior: smooth; 
-}
-a { color:inherit; text-decoration:none; }
-
-header { background:rgba(27,27,27,0.95); padding:15px 30px; position:fixed; width:100%; top:0; left:0; z-index:100; display:flex; justify-content:space-between; align-items:center; backdrop-filter:blur(10px); }
-header .logo { font-family:'Press Start 2P', cursive; font-size:22px; color:#ffcc00; }
-nav ul { display:flex; list-style:none; gap:20px; }
-nav ul li a { transition:0.3s; font-size:14px; }
-nav ul li a:hover { color:#ffcc00; }
-
-.hero { position:relative; height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; overflow:hidden; padding:0 20px; }
-.hero h1, .hero p, .btn, .server-ip { opacity:0; transform: translateY(20px); transition: all 1s ease; position:relative; }
-.hero h1 { font-family:'Press Start 2P', cursive; font-size:36px; color:#ffcc00; margin-bottom:15px; text-shadow:2px 2px #000; }
-.hero p { font-size:16px; margin-bottom:15px; text-shadow:1px 1px #000; }
-.server-ip { font-family:'Press Start 2P', cursive; font-size:18px; color:#00ffff; margin-top:10px; text-shadow:1px 1px #000; }
-.btn { background:#ffcc00; color:#000; padding:12px 25px; border-radius:5px; font-weight:bold; margin:5px; display:inline-block; cursor:pointer; transition:0.3s; font-size:14px; }
-.btn:hover { background:#e6b800; transform: scale(1.1) rotate(-1deg); }
-
-canvas#particles { position:absolute; top:0; left:0; width:100%; height:100%; z-index:1; pointer-events:none; }
-
-section { padding:80px 20px; opacity:0; transform: translateY(50px); transition: all 1s ease; }
-section.visible, .hero h1.visible, .hero p.visible, .btn.visible, .server-ip.visible { opacity:1; transform:translateY(0); }
-
-.server-info {
-    display: inline-block;
-    background: rgba(0,0,0,0.6);
-    border: 2px solid #00ffff;
-    border-radius: 15px;
-    padding: 15px 25px;
-    margin-top: 15px;
-    text-align: center;
-    animation: pulse 2s infinite;
+/* --- Общие стили --- */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Orbitron', sans-serif;
+    scroll-behavior: smooth;
+    background: #0b0013;
 }
 
-.server-info .server-ip,
-.server-info .game-version {
-    font-family: 'Press Start 2P', cursive;
-    color: #00ffff;
-    margin: 5px 0;
-    font-size: 14px;
+/* --- Навигация --- */
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: rgba(0,0,0,0.9);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
 }
 
-/* Пульсация рамки */
-@keyframes pulse {
-    0% { box-shadow: 0 0 5px #00ffff; }
-    50% { box-shadow: 0 0 20px #00ffff; }
-    100% { box-shadow: 0 0 5px #00ffff; }
+.site-header .logo {
+    font-size: 24px;
+    color: #e0c3fc;
 }
 
-
-/* Лёгкое пульсирование рамки */
-@keyframes pulse {
-    0% { box-shadow: 0 0 5px #00ffff; }
-    50% { box-shadow: 0 0 15px #00ffff; }
-    100% { box-shadow: 0 0 5px #00ffff; }
+.site-header nav ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
 }
 
-
-#features h2, #rules h2 {
-    text-align: center;
-    margin-bottom: 30px;
+.site-header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
 }
 
-#rules {
+.site-header nav ul li a:hover {
+    color: #9b5de5;
+}
+
+/* --- Hero --- */
+.hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 80px;
+    padding-left: 20px;
+    min-height: calc(100vh - 60px);
+    background: linear-gradient(135deg, #3a0ca3, #fff, #000);
+    overflow: visible;
+}
+
+.hero-frame {
+    position: relative;
+    z-index: 2;
     max-width: 900px;
-    margin: 50px auto;
-    background: rgba(27,27,27,0.85); /* Полупрозрачная рамка */
-    border-radius: 15px; /* Скругление */
-    padding: 30px 20px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.5); /* Тень */
+    padding: 30px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
 }
 
-#rules h2 {
-    text-align: center;
+.hero-background-number {
+    position: absolute;
+    bottom: -5%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    font-size: 520px;
+    font-weight: 900;
+    font-family: 'Orbitron', sans-serif;
+    color: rgba(155, 93, 229, 0.08);
+    z-index: 0;
+    pointer-events: none;
+    user-select: none;
+    animation: float 8s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,100% { transform: translate(-50%,2%) scale(1); }
+  50% { transform: translate(-50%,0%) scale(1.02); }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-text h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.hero-text p {
+    font-size: 1.2rem;
+    color: #ccc;
     margin-bottom: 20px;
 }
 
-#rules ul {
+.buttons-vertical {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.btn-play, .btn-download {
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    border: 2px solid #9b5de5;
+    color: white;
+    background: rgba(155, 93, 229, 0.1);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.btn-play:hover, .btn-download:hover {
+    background: #9b5de5;
+    color: white;
+}
+
+.server-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    color: #ddd;
+    margin-top: 15px;
+    font-weight: 500;
+}
+
+/* --- Секции в стиле блока с 2 --- */
+.section-dark {
+    background: linear-gradient(180deg, #0b0013 0%, #12001e 100%);
+    color: #fff;
+    padding: 80px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.section-dark::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 20%, rgba(155, 93, 229, 0.15), transparent 70%);
+    z-index: 0;
+}
+
+.section-dark h2 {
+    font-size: 2.3rem;
+    margin-bottom: 40px;
+    color: #d9b3ff;
+    position: relative;
+    z-index: 2;
+}
+
+/* --- Карточки особенностей --- */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 25px;
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.feature-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(155, 93, 229, 0.3);
+    border-radius: 15px;
+    padding: 20px;
+    backdrop-filter: blur(8px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 20px rgba(155, 93, 229, 0.3);
+}
+
+/* --- Блок правил --- */
+.rules-box {
+    max-width: 900px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(155, 93, 229, 0.3);
+    border-radius: 20px;
+    padding: 30px;
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 2;
+    text-align: left;
+}
+
+.rules-box ul {
+    list-style: disc;
+    margin-left: 30px;
+    color: #ddd;
+}
+
+.rules-box li {
+    margin: 10px 0;
+    line-height: 1.5;
+}
+
+/* --- Контакты --- */
+.contact-box {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 400px;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(155,93,229,0.3);
+    border-radius: 15px;
+    padding: 20px;
+    backdrop-filter: blur(8px);
+}
+
+.contact-box a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.contact-box a:hover {
+    color: #9b5de5;
+}
+
+/* --- Футер --- */
+.site-footer {
+    text-align: center;
+    padding: 20px;
+    color: #999;
+    background: #0b0013;
+}
+/* --- Hero темный фон --- */
+.hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 80px;
+    padding-left: 20px;
+    min-height: calc(100vh - 60px);
+    background: linear-gradient(135deg, #050010, #0a001f, #000); /* тёмнее */
+    overflow: visible;
+}
+
+/* --- Секции темный фон --- */
+.section-dark {
+    background: linear-gradient(180deg, #050010 0%, #0a001f 100%); /* тёмнее */
+    color: #fff;
+    padding: 80px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.section-dark::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 20%, rgba(155, 93, 229, 0.12), transparent 70%); /* слегка более мягкий свет */
+    z-index: 0;
+}
+/* --- Hero Info Box с рамкой --- */
+.hero-info-box {
+    background: rgba(255, 255, 255, 0.05); /* стеклянный эффект */
+    border: 2px solid rgba(155, 93, 229, 0.3);
+    border-radius: 20px;
+    padding: 30px;
+    backdrop-filter: blur(10px);
+    max-width: 600px;
+    margin-bottom: 20px;
+    text-align: center;
+    transition: box-shadow 0.3s ease;
+}
+
+.hero-info-box:hover {
+    box-shadow: 0 0 25px rgba(155, 93, 229, 0.3);
+}
+
+.hero-info-box h1 {
+    font-size: 2.5rem;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.hero-info-box p {
+    font-size: 1.2rem;
+    color: #ccc;
+    margin-bottom: 20px;
+}
+
+.server-info {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    font-weight: 500;
+    color: #ddd;
+}
+
+.server-info div {
+    padding: 8px 15px;
+    border: 1px solid rgba(155,93,229,0.3);
+    border-radius: 12px;
+    backdrop-filter: blur(5px);
+    transition: box-shadow 0.3s ease;
+}
+
+.server-info div:hover {
+    box-shadow: 0 0 15px rgba(155,93,229,0.3);
+}
+/* --- Рамка новостей --- */
+.news-box {
+    background: rgba(255, 255, 255, 0.05); /* стеклянный эффект */
+    border: 2px solid rgba(155, 93, 229, 0.3);
+    border-radius: 20px;
+    padding: 30px;
+    backdrop-filter: blur(10px);
+    max-width: 400px;   /* ширина рамки */
+    margin-left: 30px;  /* отступ от блока приветствия */
+    color: #ddd;
+    transition: box-shadow 0.3s ease;
+}
+
+.news-box:hover {
+    box-shadow: 0 0 25px rgba(155, 93, 229, 0.3);
+}
+
+.news-box h2 {
+    text-align: center;
+    color: #d9b3ff;
+    margin-bottom: 20px;
+}
+
+.news-box ul {
     list-style: disc;
     padding-left: 20px;
 }
 
-#rules ul li {
-    margin: 8px 0; /* Отступы между пунктами */
+.news-box li {
+    margin: 10px 0;
+    line-height: 1.5;
+    font-size: 0.95rem;
 }
 
 
-.features { display:flex; flex-wrap:wrap; gap:20px; justify-content:center; }
-.feature { background:rgba(27,27,27,0.8); padding:20px; border-radius:10px; width:220px; text-align:center; transition:0.5s; transform:translateY(0) scale(1); cursor:pointer; box-shadow:0 5px 15px rgba(0,0,0,0.3);}
-.feature:hover { transform:translateY(-15px) scale(1.05) rotateZ(1.5deg); background:rgba(43,43,43,0.9); }
-.feature img { width:50px; height:50px; margin-bottom:10px; transition:0.5s; }
-.feature:hover img { transform:rotate(15deg) scale(1.1); }
-.feature h3 { margin-bottom:10px; color:#ffcc00; font-size:16px; }
-
-/* Контакты в закруглённой рамке */
-#contact {
-    text-align: center;
-    margin: 50px auto;
-    max-width: 500px;
-    background: rgba(27,27,27,0.85);
-    border-radius: 15px;
-    padding: 30px 20px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
-}
-#contact h2 {
-    margin-bottom: 20px;
-}
-#contact p a {
-    color: #ffcc00;
-    text-decoration: none;
-    font-weight: bold;
-}
-#contact p a:hover {
-    color: #e6b800;
-}
-
-footer { background:rgba(27,27,27,0.95); text-align:center; padding:15px; margin-top:30px; font-size:12px; }
-
-@media(max-width:768px) {
-    header { flex-direction:column; gap:10px; padding:10px 15px; }
-    nav ul { flex-wrap:wrap; justify-content:center; gap:10px; }
-    .hero h1 { font-size:28px; }
-    .hero p { font-size:14px; }
-    .btn { padding:10px 20px; font-size:13px; }
-    .server-ip { font-size:16px; }
-    .features { flex-direction:column; align-items:center; }
-    .feature { width:90%; }
-}
 
 
 
